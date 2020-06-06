@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Nunito:400,700" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.8/dist/alpine.js" defer></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+
+<body>
+  <div class="todo-wrapper">
+    <div class="container" x-data="todos()">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center font-weight-bold">TO DO LIST</h4>
+          <div class="my-5">
+            <input type="text" placeholder="add new item" class="form-control border-0 form-control-lg"
+              x-model="todoTitle" @keydown.enter="addTodo()">
+          </div>
+          <ul class="list-group">
+            <template x-for="todo in todos" :key="todo.id">
+              <li class="list-group-item">
+                <input type="checkbox" class="mr-2" x-model="todo.isComplete">
+                <span x-text="todo.title" :class="{ 'line-throught' : todo.isComplete }"></span>
+                <button class="btn btn-danger btn-sm ml-2" @click="deleteTodo(todo.id)">&times;</button>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function todos() {
+      return {
+        todos: [
+          {
+            id: 1,
+            title: 'Dapibus ac facilisis in',
+            isComplete: false,
+          },
+          {
+            id: 2,
+            title: 'Morbi leo risus',
+            isComplete: false,
+          },
+          {
+            id: 3,
+            title: 'Porta ac consectetur ac',
+            isComplete: false,
+          }
+        ],
+        todoTitle: '',
+        todoId: 4,
+        addTodo() {
+          if (this.todoTitle.trim() == '') {
+            return;
+          }
+          this.todos.push({
+            id: this.todoId,
+            title: this.todoTitle,
+            isComplete: false,
+          });
+          this.todoId++;
+          this.todoTitle = '';
+        },
+        deleteTodo(id) {
+          this.todos = this.todos.filter(todo => id !== todo.id);
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -34,6 +34,8 @@ span {
 a:hover {
   text-decoration: none;
 }
+
+/* Image Gallery ----- */
 .navigation {
   position: absolute;
   width: 100%;
@@ -155,3 +157,28 @@ a:hover {
     column-count: 1;
   }
 }
+/* ----- Image Gallery */
+
+/* To Do App -------- */
+.todo-wrapper {
+  height: 100vh;
+  padding: 20px;
+}
+.todo-wrapper input[type=text] {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.list-group-item {
+  display: flex;
+  align-items: center;
+  padding: .75rem 0;
+  border-left: none !important;
+  border-right: none !important;
+}
+.list-group-item span {
+  font-family: inherit;
+  flex: 2;
+}
+.list-group-item span.line-throught {
+  text-decoration: line-through;
+}
+/* -------- To Do App */
